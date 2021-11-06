@@ -51,8 +51,8 @@ class matrix_ops():
 
         return first_mat
     
-    def get_uniform_mats(self, digit):
-        return [[digit]*self.shape[1]] * self.shape[0]
+    def get_uniform_mats(self, digit, shape):
+        return [[digit]*shape[1]] * shape[0]
     
     def validate_shape(self, shape):
         if isinstance(shape, int):
@@ -66,11 +66,11 @@ class matrix_ops():
 
     def zeros(self, shape):
         self.validate_shape(shape)        
-        return self.get_uniform_mats(0)
+        return self.get_uniform_mats(0, shape)
     
     def ones(self, shape):
         self.validate_shape(shape)        
-        return self.get_uniform_mats(1)
+        return self.get_uniform_mats(1, shape)
         
     def identity(self, shape):
         if not isinstance(shape, int):
@@ -126,9 +126,7 @@ class matrix_ops():
             return prod_mat
 
 
-# test_ip = [[1,2,3], [4,5,6], [7,8,9]]
 # mult_m = [[11,12,13], [14,15,16], [17,18,19]]
-
 test_ip = [[1, 0], [0,1]]
 conca_m = [[9,9]]
 mult_m = [[1,2], [3,4]]

@@ -13,11 +13,24 @@ class matrix_ops():
         
         self.shape = self.get_shape()
 
+
     def get_shape(self):
         if self.is_valid_matrix:
             return (len(self.inputlist), len(self.inputlist[0]))
         else:
             raise ValueError("Rows of matrix having different dimentions")
+
+
+    def square(self):
+        result_mat = []
+        for row in self.inputlist:
+            _temp = []
+            for value in row:
+                _temp.append(value**2)
+            result_mat.append(_temp)
+        
+        return result_mat
+
 
     def transpose(self, matrix=None):
         if matrix:
@@ -59,10 +72,8 @@ class matrix_ops():
         #     left += 1
         # return mat
 
-    
 
     def is_square(self):
-        print(self.shape)
         if self.shape[0] == self.shape[1]:
             return True
         else:
@@ -154,14 +165,4 @@ class matrix_ops():
                     prod_mat.append(_row_data)
         
             return prod_mat
-
-    def square(self):
-        result_mat = []
-        for row in self.inputlist:
-            _temp = []
-            for value in row:
-                _temp.append(value**2)
-            result_mat.append(_temp)
-        
-        return result_mat
 

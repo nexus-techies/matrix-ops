@@ -13,6 +13,11 @@ class matrix_ops():
         
         self.shape = self.get_shape()
 
+    def get_shape(self):
+        if self.is_valid_matrix:
+            return (len(self.inputlist), len(self.inputlist[0]))
+        else:
+            raise ValueError("Rows of matrix having different dimentions")
 
     def transpose(self, matrix=None):
         if matrix:
@@ -24,12 +29,37 @@ class matrix_ops():
     
     def rotate_matrix(self, matrix=None):
         return
+        # if not len(mat):
+        #     return
+        # top = 0
+        # bottom = len(mat)-1
+        # left = 0
+        # right = len(mat[0])-1
+        # while(left < right and top < bottom):
+        #     prev = mat[top+1][left]
+        #     for i in range(left, right+1):
+        #         curr = mat[top][i]
+        #         mat[top][i] = prev
+        #         prev = curr
+        #     top += 1
+        #     for i in range(top, bottom+1):
+        #         curr = mat[i][right]
+        #         mat[i][right] = prev
+        #         prev = curr
+        #     right -= 1
+        #     for i in range(right, left-1, -1):
+        #         curr = mat[bottom][i]
+        #         mat[bottom][i] = prev
+        #         prev = curr
+        #     bottom -= 1
+        #     for i in range(bottom, top-1, -1):
+        #         curr = mat[i][left]
+        #         mat[i][left] = prev
+        #         prev = curr
+        #     left += 1
+        # return mat
 
-    def get_shape(self):
-        if self.is_valid_matrix:
-            return (len(self.inputlist), len(self.inputlist[0]))
-        else:
-            raise ValueError("Rows of matrix having different dimentions")
+    
 
     def is_square(self):
         print(self.shape)
@@ -125,19 +155,13 @@ class matrix_ops():
         
             return prod_mat
 
+    def square(self):
+        result_mat = []
+        for row in self.inputlist:
+            _temp = []
+            for value in row:
+                _temp.append(value**2)
+            result_mat.append(_temp)
+        
+        return result_mat
 
-# mult_m = [[11,12,13], [14,15,16], [17,18,19]]
-test_ip = [[1, 0], [0,1]]
-conca_m = [[9,9]]
-mult_m = [[1,2], [3,4]]
-mo = matrix_ops(test_ip)
-mult_o = matrix_ops(mult_m)
-conca_o = matrix_ops(conca_m)
-
-print(mo.shape)
-print(mo.transpose(test_ip))
-print(mo.concatenate(conca_o))
-print(mo.ones((3,4)))
-
-print(mo.identity(4))
-print(mo.outer(mult_o))
